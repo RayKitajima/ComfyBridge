@@ -1,0 +1,9 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Virtual environment
+sandbox/
