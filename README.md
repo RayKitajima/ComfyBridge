@@ -47,6 +47,8 @@ $ python main.py --listen
 
 Send a POST request to `/generate` with the appropriate JSON payload:
 
+(Replace `<seed>`, `<positive prompt>`, and `<negative prompt>` with the desired values.)
+
 ```bash
 curl --location --request POST 'http://localhost:8189/generate' \
 --header 'Content-Type: application/json' \
