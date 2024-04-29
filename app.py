@@ -45,7 +45,6 @@ def poll_for_completion(prompt_id):
             res = requests.get(history_url)
             if res.status_code == 200:
                 response_json = res.json()
-                # Adjusting to correct dictionary keys based on the actual response structure
                 if prompt_id in response_json and 'outputs' in response_json[prompt_id]:
                     output_info = response_json[prompt_id]['outputs']
                     for key in output_info:
@@ -64,7 +63,6 @@ def poll_for_completion(prompt_id):
 
 def get_image_data(image_path):
     """Retrieve the actual image from the ComfyUI server and return as bytes."""
-    # Ensure the image_path includes any necessary base path or adjustments for accessing the file
     view_url = f'http://127.0.0.1:8188/view?filename={image_path}'
     response = requests.get(view_url)
     if response.status_code == 200:
@@ -72,4 +70,4 @@ def get_image_data(image_path):
     return None
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=8189)

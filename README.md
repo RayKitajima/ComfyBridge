@@ -48,13 +48,13 @@ $ python main.py --listen
 Send a POST request to `/generate` with the appropriate JSON payload:
 
 ```bash
-curl --location --request POST 'http://localhost:5000/generate' \
+curl --location --request POST 'http://localhost:8189/generate' \
 --header 'Content-Type: application/json' \
 --data '{
     "prompt": {
         "3": {
             "inputs": {
-                "seed": 598407938235545,
+                "seed": <seed>,
                 "steps": 20,
                 "cfg": 8,
                 "sampler_name": "euler",
@@ -84,7 +84,7 @@ curl --location --request POST 'http://localhost:5000/generate' \
         },
         "4": {
             "inputs": {
-                "ckpt_name": "PVCStyleModelMovable_beta25Realistic.safetensors"
+                "ckpt_name": "<model>"
             },
             "class_type": "CheckpointLoaderSimple",
             "_meta": {
@@ -104,7 +104,7 @@ curl --location --request POST 'http://localhost:5000/generate' \
         },
         "6": {
             "inputs": {
-                "text": "icon portrait of Female, surreal,amazing quality,masterpiece,best quality,awesome,inspiring,cinematic composition,soft shadows,Film grain,shallow depth of field,highly detailed,high budget,cinemascope,epic,color graded cinematic,atmospheric lighting,natural,figure,natural lighting,exqusite visual effect,delicate details,\n1girl, hoshino ai \\(oshi no ko\\), oshi no ko,star (symbol),solo,hair ornament,purple hair,rabbit hair ornament,gloves,long hair,star-shaped pupils,tongue,tongue out,pink gloves,dress,symbol-shaped pupils,heart,purple eyes,idol clothes,idol,pink dress,star hair ornament,heart hands,sleeveless,brooch,frills,heart brooch,armpits,frilled dress,looking at viewer,hair between eyes,sidelocks,blush,turtleneck dress,sleeveless dress,frilled gloves,smile,closed mouth,jewelry,one side up,multicolored hair,upper body,ribbon, White background",
+                "text": "<positive prompt>",
                 "clip": [
                     "4",
                     1
@@ -117,7 +117,7 @@ curl --location --request POST 'http://localhost:5000/generate' \
         },
         "7": {
             "inputs": {
-                "text": "lowres,(bad),text,error,fewer,extra,missing,worst quality,jpeg artifacts,low quality,watermark,unfinished,displeasing,oldest,early,chromatic aberration,signature,extra digits,artistic error,username,scan,[abstract],cleavage,nipples,",
+                "text": "<negative prompt>",
                 "clip": [
                     "4",
                     1
