@@ -6,13 +6,16 @@ from PIL import Image
 import json
 import time
 from requests.exceptions import RequestException
-
+import argparse
 import logging
 
 logging.basicConfig(level=logging.DEBUG, filename='app.log', filemode='w',
                     format='%(name)s - %(levelname)s - %(message)s')
 
 app = Flask(__name__)
+
+# Default timeout
+timeout = 20
 
 @app.route('/generate', methods=['POST'])
 def generate_image():
@@ -29,18 +32,18 @@ def generate_image():
         return jsonify({'error': 'No prompt ID returned'}), 500
 
     # Poll for result completion
-    image_data = poll_for_completion(prompt_id)
+    image_data = poll_for_completion(prompt_id, timeout)
     if image_data is None:
         return jsonify({'error': 'Failed to retrieve image'}), 500
 
     # Return base64-encoded image
     return jsonify({'image': base64.b64encode(image_data).decode('utf-8')})
 
-def poll_for_completion(prompt_id):
+def poll_for_completion(prompt_id, timeout):
     history_url = f'http://127.0.0.1:8188/history/{prompt_id}'
     start_time = time.time()
     
-    while time.time() - start_time < 20:  # 20 seconds timeout
+    while time.time() - start_time < timeout:  # Use the provided timeout
         try:
             res = requests.get(history_url)
             if res.status_code == 200:
@@ -70,4 +73,12 @@ def get_image_data(image_path):
     return None
 
 if __name__ == '__main__':
+    app.run(debug=True, port=8189)
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Start the Flask server with a timeout.')
+    parser.add_argument('--timeout', type=int, default=20, help='Timeout for polling the image completion in seconds')
+    args = parser.parse_args()
+
+    timeout = args.timeout
     app.run(debug=True, port=8189)

@@ -1,0 +1,6 @@
+{
+  "ckpt_name": "YOUR_CHECKPOINT_NAME",
+  "positive_prompt": "YOUR_POSITIVE_PROMPT",
+  "negative_prompt": "YOUR_NEGATIVE_PROMPT",
+  "base_image": "PATH_TO_BASE_IMAGE"
+}
