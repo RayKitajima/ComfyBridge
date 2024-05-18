@@ -37,7 +37,17 @@ $ source bin/activate
 (sandbox) $ sandbox/bin/python app.py
 ```
 
-And also, you need to have the ComfyUI API running on your local machine.
+To run the Flask application with a custom timeout, use the `--timeout` option:
+
+```bash
+(sandbox) $ sandbox/bin/python app.py --timeout 30
+```
+
+This will set the polling timeout to 30 seconds.
+
+### Running the ComfyUI API
+
+You also need to have the ComfyUI API running on your local machine:
 
 ```bash
 $ python main.py --listen
